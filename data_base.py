@@ -11,11 +11,11 @@ cursor.execute('''
 		);
 	''')
 
-cursor.execute('''
-	INSERT INTO user(username, password)
-	VALUES("test_user", "test_pass")
-	''')
-db.commit()
+# cursor.execute('''
+# 	INSERT INTO user(username, password)
+# 	VALUES("test_user", "test_pass")
+# 	''')
+# db.commit()
 
-cursor.execute("SELECT * FROM user")
-print(cursor.fetchall())
+# cursor.execute("SELECT * FROM user")
+# print(cursor.fetchall())
