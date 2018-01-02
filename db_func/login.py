@@ -2,7 +2,8 @@ import sqlite3
 import getpass
 from hashlib import blake2b
 
-"""Return user id from function to only allow to to edit their data"""
+"""Return user id from function to only allow to to edit their data". If -1,
+not valid user"""
 def login():
 	for i in range(3):
 		username = input("Enter username: ")
@@ -21,12 +22,13 @@ def login():
 		if results:
 			for p in results:
 				print ("Welcome, " + p[1])
+				print()
 			return int(p[0])
 			break
 		else:
 			print ("Username & password combination not recognized\n\n")
-
-	return
+	print ("Too many incorrect matches, exiting")
+	return -1
 
 
 def make_user():
@@ -55,4 +57,5 @@ def make_user():
 					VALUES(?, ?)'''
 	cursor.execute(insert_data, [(username), (password)])
 	db.commit()
+	print ("User created!")
 
