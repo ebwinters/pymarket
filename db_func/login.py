@@ -2,6 +2,8 @@ import sqlite3
 import getpass
 from hashlib import blake2b
 
+
+
 """Return user id from function to only allow to to edit their data". If -1,
 not valid user"""
 def login():
