@@ -16,6 +16,7 @@ def cr_hold():
 #0 if crypto
 	cursor.execute('''
 		CREATE TABLE IF NOT EXISTS holdings(
+		holdingID INTEGER PRIMARY KEY,
 		userID INTEGER NOT NULL,
 		abrv VARCHAR(10) NOT NULL,
 		hold MONEY NOT NULL,
