@@ -1,5 +1,4 @@
-###  Python based application I wrote over winter-break. This application helped me learn how to use SQLite3 with Python
-###  as well as finance and crypto APIs. It solves the simple problem of not being able to see all HODLings in one place.
+###  A Python based application I wrote over winter-break. This application helped me learn how to use SQLite3 with Python as well as finance and crypto APIs. It solves the simple problem of not being able to see all HODLings in one place.
 
 You can use the [editor on GitHub](https://github.com/ebwinters/pymarket/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
