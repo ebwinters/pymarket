@@ -1,6 +1,6 @@
 """Contains functions to display a menu for the main app"""
-from db_func.menu_func import display_holdings, get_net_worth, update_holding, delete_holding
-# from db_func.backend_func import get_net_worth
+from db_func.menu_func import display_holdings, get_net_worth, update_holding, delete_holding, make_holding
+from db_func.backend_func import get_current_price
 import sys
 
 def show_menu(user_id):
@@ -11,9 +11,10 @@ def show_menu(user_id):
 	print ('2) Update holdings')
 	print ('3) Remove holdings')
 	print ('4) Create new holding')
+	# print ('5) Get current price of coin/stock')
 	selection = int(input())
 
-	if selection not in range (0,5):	#if not valid selection, reselct
+	if selection not in range (0,6):	#if not valid selection, reselct
 		print ('\n\n\nincorrect input please enter again')
 		show_menu(user_id)
 
@@ -30,7 +31,14 @@ def show_menu(user_id):
 		remove_holdings(user_id)
 
 	if selection == 4:	#create new holding
-		pass
+		create_holding(user_id)
+
+	# if selection == 5:
+	# 	abrv = str(input("Please enter the abbreviation of the stock/coin you want to check: ")).upper()	
+	# 	cryp = int(input("Please enter 0 for crypto, 1 for stock: "))	
+	# 	print("Price of " + abrv + " is: $" + str(get_current_price(abrv, cryp)))
+	# 	print()
+	# 	show_menu()
 
 
 
@@ -58,8 +66,15 @@ def remove_holdings(user_id):	#selc3
 	print('\n\n\n\n')
 	show_menu(user_id)
 
-def create_holding():	#selc4
-	#go to query file in db_Stuff
-	#FUNCTION TO CREATE HOLDING
-	pass
+def create_holding(user_id):	#selc4
+	abrv = str(input("Please enter the abbreviation of the stock/coin you want to add: ")).upper()
+	hold = float(input("Please enter the amount you bought: "))
+	bought_at = float(input("Please enter the price which you bought at: $"))
+	cryp = int(input("Please enter 0 for crypto, 1 for stock: "))
+	make_holding(user_id, abrv, hold, bought_at, cryp)
+	print()
+	display_holdings(user_id)
+	print('\n\n\n\n')
+	show_menu(user_id)
+
 

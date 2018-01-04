@@ -51,3 +51,10 @@ def delete_holding(user_id, holding_to_delete):
 	cursor.execute(query,[(user_id), (holding_to_delete)])
 	db.commit()
 	print ("Holding " + str(holding_to_delete) + " deleted.")
+
+def make_holding(user_id, abrv, hold, bought_at, crypt):
+	query = ('''INSERT INTO holdings(userID, abrv, hold, bought_at, crypt)
+				VALUES (?, ?, ?, ?, ?)''')
+	cursor.execute(query, [(user_id), (abrv), (hold), (bought_at), (crypt)])
+	db.commit()
+	print ("Holding created!")
