@@ -6,7 +6,9 @@ with sqlite3.connect("pymarket.db") as db:
 
 
 
-def get_net_worth(user_id):
+def get_net_worth(user_id, db_name):
+	with sqlite3.connect(db_name) as db:
+		cursor = db.cursor()
 	money_spent = []
 	current_price = []
 	net = 0
@@ -25,7 +27,9 @@ def get_net_worth(user_id):
 	print ('net gain: $' + "%0.2f" % (net,))
 
 """Print out a users holdings to the terminal"""
-def display_holdings(user_id):
+def display_holdings(user_id, db_name):
+	with sqlite3.connect(db_name) as db:
+		cursor = db.cursor()
 	list_holdings = []
 	query = ("SELECT * FROM holdings where userID = ?")
 	cursor.execute(query, [(user_id),])
@@ -37,7 +41,9 @@ def display_holdings(user_id):
 	return list_holdings
 
 """Update holdings with userid and holding to change as holdingID"""
-def update_holding(user_id, holding_to_change):
+def update_holding(user_id, holding_to_change, db_name):
+	with sqlite3.connect(db_name) as db:
+		cursor = db.cursor()
 	hold_amt = input("Please enter the amount which you are holding: ")
 	bought_at = input("Please enter the price in USD which you bought at: ")
 	query = ("UPDATE holdings set hold = ?, bought_at = ? where userID = ? and holdingID = ?")
@@ -46,13 +52,17 @@ def update_holding(user_id, holding_to_change):
 	print ("Holding " + str(holding_to_change) + " updated.")
 
 """Delete holding with userid and holding to change is holdingID"""
-def delete_holding(user_id, holding_to_delete):
+def delete_holding(user_id, holding_to_delete, db_name):
+	with sqlite3.connect(db_name) as db:
+		cursor = db.cursor()
 	query = ("DELETE FROM holdings where userID = ? and holdingID = ?")
 	cursor.execute(query,[(user_id), (holding_to_delete)])
 	db.commit()
 	print ("Holding " + str(holding_to_delete) + " deleted.")
 
-def make_holding(user_id, abrv, hold, bought_at, crypt):
+def make_holding(user_id, abrv, hold, bought_at, crypt, db_name):
+	with sqlite3.connect(db_name) as db:
+		cursor = db.cursor()
 	query = ('''INSERT INTO holdings(userID, abrv, hold, bought_at, crypt)
 				VALUES (?, ?, ?, ?, ?)''')
 	cursor.execute(query, [(user_id), (abrv), (hold), (bought_at), (crypt)])
