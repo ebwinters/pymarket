@@ -36,5 +36,13 @@ def display_holdings(user_id):
 		print ('bought @: $' + str(holding[4]) + '\n')
 	return list_holdings
 
+def update_holding(user_id, holding_to_change):
+	hold_amt = input("Please enter the amount which you are holding: ")
+	bought_at = input("Please enter the price in USD which you bought at: ")
+	query = ("UPDATE holdings set hold = ?, bought_at = ? where userID = ? and holdingID = ?")
+	cursor.execute(query,[(float(hold_amt)), (float(bought_at)), (user_id), (holding_to_change)])
+	db.commit()
+	print ("Holding " + str(holding_to_change) + " updated.")
+
 
 

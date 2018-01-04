@@ -1,5 +1,5 @@
 """Contains functions to display a menu for the main app"""
-from db_func.menu_func import display_holdings, get_net_worth
+from db_func.menu_func import display_holdings, get_net_worth, update_holding
 # from db_func.backend_func import get_net_worth
 import sys
 
@@ -11,6 +11,7 @@ def show_menu(user_id):
 	print ('2) Update holdings')
 	print ('3) Remove holdings')
 	print ('4) Create new holding')
+	print ('5) Delete holdings')
 	selection = int(input())
 
 	if selection not in range (0,5):	#if not valid selection, reselct
@@ -24,9 +25,7 @@ def show_menu(user_id):
 		check_holdings(user_id)
 
 	if selection == 2:	#update holdings
-		#display holdings 					function for this
-		#choose which one to update using holdID
-		pass
+		update_holdings(user_id)
 
 	if selection == 3:	#remove holdings
 		#display holdings 					function for this
@@ -45,20 +44,22 @@ def check_holdings(user_id):	#selc 1
 	print('\n\n\n\n')
 	show_menu(user_id)
 
-def update_holdings():
-	#go to query file in db_Stuff
-	#FUNCTION TO UPDATE HERE
-	# sqlite> update holdings
- #   ...> set bought_at=1.27
- #   ...> where userID=1;
-	pass
+def update_holdings(user_id):	#selc 2
+	print ("Here is a list of your holdings:\n")
+	display_holdings(str(user_id))
+	holding_to_change = input("Please enter a holding id which you would like to change: ")
+	update_holding(user_id, holding_to_change)
+	print('\n\n\n\n')
+	show_menu(user_id)
 
-def remove_holdings():
+
+def remove_holdings():	#selc3
 	#go to query file in db_Stuff
 	#FUNCTION TO DELETE HERE
 	pass
 
-def create_holding():
+def create_holding():	#selc4
 	#go to query file in db_Stuff
 	#FUNCTION TO CREATE HOLDING
 	pass
+
