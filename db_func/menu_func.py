@@ -36,6 +36,7 @@ def display_holdings(user_id):
 		print ('bought @: $' + str(holding[4]) + '\n')
 	return list_holdings
 
+"""Update holdings with userid and holding to change as holdingID"""
 def update_holding(user_id, holding_to_change):
 	hold_amt = input("Please enter the amount which you are holding: ")
 	bought_at = input("Please enter the price in USD which you bought at: ")
@@ -44,5 +45,9 @@ def update_holding(user_id, holding_to_change):
 	db.commit()
 	print ("Holding " + str(holding_to_change) + " updated.")
 
-
-
+"""Delete holding with userid and holding to change is holdingID"""
+def delete_holding(user_id, holding_to_delete):
+	query = ("DELETE FROM holdings where userID = ? and holdingID = ?")
+	cursor.execute(query,[(user_id), (holding_to_delete)])
+	db.commit()
+	print ("Holding " + str(holding_to_delete) + " deleted.")
