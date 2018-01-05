@@ -59,8 +59,34 @@ class TestDeleteFunction(unittest.TestCase):
 		self.assertCountEqual([], cursor.fetchall())
 
 
-suite = unittest.TestLoader().loadTestsFromTestCase(TestDeleteFunction)
+class TestUpdateFunction(unittest.TestCase):
+	def test_update_holding(self):
+		'''test that update works in general'''
+		teardown_user()
+		teardown_holdings()
+		setup_user()
+		setup_holdings()
+		update_holding(4, 8, 10, 10, "test_pymarket.db")
+		query = '''SELECT * FROM holdings where holdingID=? and userID=?'''
+		cursor.execute(query, [(8), (4)])
+		self.assertEqual(cursor.fetchall()[0][3], 10.0)
+
+	def test_update_holding_wrong_id(self):
+		'''test that update works with wrong id given'''
+		teardown_user()
+		teardown_holdings()
+		setup_user()
+		setup_holdings()
+		update_holding(2, 8, 10, 10, "test_pymarket.db")
+		query = '''SELECT * FROM holdings where holdingID=? and userID=?'''
+		cursor.execute(query, [(8), (4)])
+		self.assertEqual(cursor.fetchall()[0][3], 11.24)	
+
+suite = unittest.TestLoader().loadTestsFromTestCase(TestUpdateFunction)
 unittest.TextTestRunner(verbosity=3).run(suite)
+
+# suite = unittest.TestLoader().loadTestsFromTestCase(TestDeleteFunction)
+# unittest.TextTestRunner(verbosity=3).run(suite)
 
 # suite = unittest.TestLoader().loadTestsFromTestCase(TestMakeFunction)
 # unittest.TextTestRunner(verbosity=2).run(suite)

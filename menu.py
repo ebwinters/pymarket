@@ -53,7 +53,9 @@ def update_holdings(user_id):	#selc 2
 	print ("Here is a list of your holdings:\n")
 	display_holdings(str(user_id))
 	holding_to_change = input("Please enter a holding id which you would like to change: ")
-	update_holding(user_id, holding_to_change, "pymarket.db")
+	hold_amt = input("Please enter the amount which you are holding: ")
+	bought_at = input("Please enter the price in USD which you bought at: ")
+	update_holding(user_id, holding_to_change, hold_amt, bought_at, "pymarket.db")
 	print('\n\n\n\n')
 	show_menu(user_id)
 
