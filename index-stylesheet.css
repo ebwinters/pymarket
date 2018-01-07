@@ -2,24 +2,103 @@
     font-family: myFirstFont;
     src: url(Amaranth-Regular.otf);
 }
-
+/*60b0f4 blue*/
 html {
-	background-color: #ff9400;
+	background-color: #f4f9ba;
+}
+#index {
+	background-color: #f4f9ba;
 }
 
-div {
-	height: 200px;
-	width: 200px;
-	position: fixed;
-  	top: 10%;
-  	left: 50%;
-  	margin-top: -50px;
-  	margin-left: -100px;
+.container-fluid {
+	background-color: #f4f9ba;
 }
 
+.img-fluid.logo {
+	height: 180px;
+	width: 150px;
 
-/*#index body 
-	background-color: #64B60D;*/
+}
+
+.col-lg-12.logo {
+	top: 10px;
+	height: 190px;
+	background-color: #f4f9ba;
+	text-align: center;
+}
+
+.col-lg-12.desc h1{
+	padding-top: 20px;
+	font-size: 26px;
+	font-family: myFirstFont;
+	height: 80px;
+	background-color: #f4f9ba;
+	text-align: center;
+}
+
+.col-lg-12.apis h1{
+	padding-top: 20px;
+	font-size: 56px;
+	font-family: myFirstFont;
+	height: 80px;
+	background-color: #f4f9ba;
+	text-align: center;
+}
+
+.aapis:hover {
+	text-decoration: none;
+	color: black;
+
+}
+.aapis {
+	color: #60b0f4;
+	text-decoration: none;
+}
+
+.space {
+	padding-bottom: 20px;
+}
+.col-lg-6.cry {
+	border-width: 1px;
+	border-collapse: separate;
+	border-style: solid;
+	border-color: #60b0f4;
+	height: 320px;
+}
+
+.col-lg-6.cry h1{
+	padding-top: 10px;
+	font-size: 46px;
+	font-family: myFirstFont;
+	color: #60b0f4;
+	text-decoration: none;
+	background-color: #f4f9ba;
+	text-align: center;
+}
+.col-lg-6.stock h1{
+	padding-top: 10px;
+	font-size: 46px;
+	font-family: myFirstFont;
+	color: #60b0f4;
+	text-decoration: none;
+	background-color: #f4f9ba;
+	text-align: center;
+}
+
+.col-lg-12.crdes {
+	text-align: center;
+	font-family: myFirstFont;
+	font-size: 26px;
+	color: black;
+}
+
+.not-necessary {
+	font-size: 3px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
 
 
 

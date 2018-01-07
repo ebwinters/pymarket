@@ -12,13 +12,54 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 	</head>
 
-	<body id="index">
-		<div >
-			<img src="pymarket.png" class="img-fluid">
+	<body id="index" onload="typeCryptoAPI()">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 logo">
+					<img src="pymarket.png" class="img-fluid logo">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12 desc">
+					<h1>"A Python based application to monitor your stock market and crypto holdings in one place"</h1>
+					<hr>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 apis">
+					<h1>APIs Used</h1>
+				</div>
+			</div>
+			<div class="row space">
+				<div class="col-lg-6 apis cry border-top-0 border-bottom-0 border-left-0">
+					<h1><a href="https://pypi.python.org/pypi/cryptocompare" class="aapis">Cryptocompare</a></h1>
+					<div class="row">
+						<p class="col-lg-12 crdes">
+							I used the Crpytocompare API in order to monitor crypto-currency prices. It's used in functions when informing users on net gain and adding a new holding. The API pulls from sites such as Bitfinex, Coinbase, and BitStamp.
+						</p>
+					</div>
+				</div>
+
+				<div class="col-lg-6 apis stock">
+					<h1><a href="https://pypi.python.org/pypi/iexfinance/0.2" class="aapis">IEXFinance</a></h1>
+					<div class="row">
+						<p class="col-lg-12 crdes">
+							I used the Crpytocompare API in order to monitor stock prices. It is written in a similar fashion to the Yahoo Finance API, which was discontinued. I used it in functions to informin users on net gain and adding a new holding. The API pulls from the Innvestor's Exchange developer platform.
+						</p>
+					</div>
+				</div>
+			</div>
+			<hr>
+
 		</div>
+		
 
-		<!-- <a href="https://github.com/ebwinters/pymarket"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a> -->
+<!-- <img src="pymarket.png" class="img-fluid"> -->
+		<p class="not-necessary">Logo made with Logomakr.com</p>
 
+		<a href="https://github.com/ebwinters/pymarket"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
