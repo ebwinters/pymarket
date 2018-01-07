@@ -1,0 +1,25 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(Amaranth-Regular.otf);
+}
+
+html {
+	background-color: #ff9400;
+}
+
+div {
+	height: 200px;
+	width: 200px;
+	position: fixed;
+  	top: 10%;
+  	left: 50%;
+  	margin-top: -50px;
+  	margin-left: -100px;
+}
+
+
+/*#index body 
+	background-color: #64B60D;*/
+
+
+
