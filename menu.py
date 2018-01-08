@@ -1,5 +1,5 @@
 """Contains functions to display a menu for the main app"""
-from db_func.menu_func immport display_holdings, get_net_worth, update_holding, delete_holding, make_holding
+from db_func.menu_func import display_holdings, get_net_worth, update_holding, delete_holding, make_holding
 from db_func.backend_func import get_current_price
 import sys
 
@@ -51,7 +51,7 @@ def check_holdings(user_id):	#selc 1
 
 def update_holdings(user_id):	#selc 2
 	print ("Here is a list of your holdings:\n")
-	display_holdings(str(user_id))
+	display_holdings(str(user_id), "pymarket.db")
 	holding_to_change = input("Please enter a holding id which you would like to change: ")
 	hold_amt = input("Please enter the amount which you are holding: ")
 	bought_at = input("Please enter the price in USD which you bought at: ")
@@ -62,7 +62,7 @@ def update_holdings(user_id):	#selc 2
 
 def remove_holdings(user_id):	#selc3
 	print ("Here is a list of your holdings:\n")
-	display_holdings(str(user_id))
+	display_holdings(str(user_id), "pymarket.db")
 	holding_to_delete = input("Please enter a holding id which you would like to delete: ")
 	delete_holding(user_id, holding_to_delete, "pymarket.db")
 	print('\n\n\n\n')
@@ -75,7 +75,7 @@ def create_holding(user_id):	#selc4
 	cryp = int(input("Please enter 0 for crypto, 1 for stock: "))
 	make_holding(user_id, abrv, hold, bought_at, cryp, "pymarket.db")
 	print()
-	display_holdings(user_id)
+	display_holdings(user_id, "pymarket.db")
 	print('\n\n\n\n')
 	show_menu(user_id)
 
