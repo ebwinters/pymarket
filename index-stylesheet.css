@@ -100,9 +100,24 @@ html {
 	text-decoration: none;
 	background-color: #f4f9ba;
 	text-align: center;
-
 }
 
+.dbex {
+	padding-top: 10px;
+	font-size: 26px;
+	font-family: myFirstFont;
+	background-color: #f4f9ba;
+	text-align: center;
+
+}
+.dbe {
+	font-size: 16px;
+	font-family: myFirstFont;
+	height: 80px;
+	background-color: #f4f9ba;
+	text-align: center;
+	
+}
 .not-necessary {
 	font-size: 3px;
 	position: absolute;
