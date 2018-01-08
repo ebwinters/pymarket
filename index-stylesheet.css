@@ -92,6 +92,17 @@ html {
 	color: black;
 }
 
+.col-lg-6.user h1{
+	padding-top: 10px;
+	font-size: 46px;
+	font-family: myFirstFont;
+	color: #60b0f4;
+	text-decoration: none;
+	background-color: #f4f9ba;
+	text-align: center;
+
+}
+
 .not-necessary {
 	font-size: 3px;
 	position: absolute;
