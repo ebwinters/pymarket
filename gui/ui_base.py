@@ -1,5 +1,6 @@
 import tkinter as tk
-
+from db_func.menu_func import get_net_worth, display_holdings, update_holding, delete_holding, make_holding
+from db_func.login import login, make_user
 LARGE_FONT = ("Verdana", 12)
 
 class pymarketApp(tk.Tk):
@@ -47,25 +48,74 @@ class StartPage(tk.Frame):
 		new_user_button = tk.Button(self, text="New User", command=lambda: controller.show_frame(NewUser))
 		new_user_button.pack()
 
+def login_func(tb1, tb2):
+	username = tb1.get()
+	password = tb2.get()
+	print (username, password)
+	print(login(username, password))
+
+def make_user_func(tb1, tb2, tb3):
+	username = tb1.get()
+	password = tb2.get()
+	password2 = tb3.get()
+	make_user(username, password, password2)
 class Login(tk.Frame):
+	
+
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="login page", font=LARGE_FONT)
+		label = tk.Label(self, text="Please enter your username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
-		login_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
+
+		username_label = tk.Label(self, text="Enter your username")
+		username_label.pack()
+		username = tk.Entry(self)
+		username.pack()
+
+		password_label = tk.Label(self, text="Enter your password")
+		password_label.pack()
+
+		password = tk.Entry(self, show="*")
+		password.pack()
+
+		login_button = tk.Button(self, text="Login", command=lambda: login_func(username, password))
 		login_button.pack()
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
+		home_button.pack()
 
 class NewUser(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="new user page", font=LARGE_FONT)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
-		login_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
-		login_button.pack()
 
-app = pymarketApp()
-app.geometry('{}x{}'.format(500,500))
-app.mainloop()
+		username_label = tk.Label(self, text="Enter your username")
+		username_label.pack()
+		username = tk.Entry(self)
+		username.pack()
+
+		password_label = tk.Label(self, text="Enter your password")
+		password_label.pack()
+		password = tk.Entry(self, show="*")
+		password.pack()
+
+		password_label2 = tk.Label(self, text="Enter your password again")
+		password_label2.pack()
+		password2 = tk.Entry(self, show="*")
+		password2.pack()
+
+		make_button = tk.Button(self, text="Make User", command=lambda: make_user_func(username, password, password2))
+		make_button.pack()
+
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
+		home_button.pack()
+
+def run_app():
+	app = pymarketApp()
+	app.geometry('{}x{}'.format(500,500))
+	app.mainloop()
 
 
 
