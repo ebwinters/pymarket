@@ -18,4 +18,3 @@ if (usr != 1):
 	if is_logged_in != -1:
 		show_menu(str(is_logged_in))
 
-#https://www.google.com/search?ei=grxRWtKHM4ON_QbXnoqwDw&q=making+a+python+UI+with+many+frames&oq=making+a+python+UI+with+many+frames&gs_l=psy-ab.3...1548.5965.0.6050.0.0.0.0.0.0.0.0..0.0....0...1c.1.64.psy-ab..0.0.0....0.qmUXXX8RuC4#kpvalbx=1
