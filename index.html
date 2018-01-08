@@ -46,12 +46,175 @@
 					<h1><a href="https://pypi.python.org/pypi/iexfinance/0.2" class="aapis">IEXFinance</a></h1>
 					<div class="row">
 						<p class="col-lg-12 crdes">
-							I used the Crpytocompare API in order to monitor stock prices. It is written in a similar fashion to the Yahoo Finance API, which was discontinued. I used it in functions to informin users on net gain and adding a new holding. The API pulls from the Innvestor's Exchange developer platform.
+							I used the Crpytocompare API in order to monitor stock prices. It is written in a similar fashion to the Yahoo Finance API, which was discontinued. I used it in functions informing users on net gain and adding a new holding. The API pulls from the Innvestor's Exchange developer platform.
 						</p>
 					</div>
 				</div>
 			</div>
 			<hr>
+
+			<div class="row">
+				<div class="col-lg-12 apis">
+					<h1>Database Schema</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 user">
+					<h1>Users Table</h1>
+					<div class="row">
+						<table class="table table-bordered table-hover">
+							<thead>
+    							<tr>
+							      <th scope="col">UserID</th>
+							      <th scope="col">Username</th>
+							      <th scope="col">Password</th>
+						    	</tr>
+							</thead>
+							<tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>ebwinters</td>
+							      <td>8411cee2db364f1da0f399580d2405</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">2</th>
+							      <td>licanalister</td>
+							      <td>ef070509d3df6492e0e280c3da8af3</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">3</th>
+							      <td>jgocaldise</td>
+							      <td>2c5d7e6b28bf822f21a56c4da605f8</td>
+							    </tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-lg-6 user">
+					<h1>Holdings Table</h1>
+					<div class="row">
+						<table class="table table-bordered table-hover">
+							<thead>
+    							<tr>
+							      <th scope="col">HoldingID</th>
+							      <th scope="col">UserID</th>
+							      <th scope="col">Abrv</th>
+							      <th scope="col">Hold</th>
+							      <th scope="col">Bought_At</th>
+							      <th scope="col">Crypt</th>
+						    	</tr>
+							</thead>
+							<tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>1</td>
+							      <td>APPL</td>
+							      <td>81.7 Shares</td>
+							      <td>$159.32</td>
+							      <td>1</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">2</th>
+							      <td>1</td>
+							      <td>BTC</td>
+							      <td>3.7 Shares</td>
+							      <td>$12000.81</td>
+							      <td>0</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">3</th>
+							      <td>2</td>
+							      <td>TEUM</td>
+							      <td>10.7 Shares</td>
+							      <td>$1.27</td>
+							      <td>1</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">4</th>
+							      <td>3</td>
+							      <td>XRB</td>
+							      <td>37.9 Shares</td>
+							      <td>$10.92</td>
+							      <td>0</td>
+							    </tr>
+							    <tr>
+							      <th scope="row">5</th>
+							      <td>3</td>
+							      <td>BLT</td>
+							      <td>103.42 Shares</td>
+							      <td>$0.68</td>
+							      <td>0</td>
+							    </tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-2">
+					<p class="dbex">
+						UserID
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Integer - user identification number  <br>(primary key)
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<p class="dbex">
+						HoldingID
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Integer - holding identification number <br>(primary key)
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<p class="dbex">
+						Abrv
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Varchar - Abreviation for stock or crypto holding 
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<p class="dbex">
+						Hold
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Money - The amount of stock or crypto that the user is holding 
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<p class="dbex">
+						Bought_At
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Money - The price in USD at which the user bought at
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<p class="dbex">
+						Crypt
+					</p>
+					<div class="col-lg-12">
+						<p class="dbe">
+							Boolean - 0 for a cryptocurrency, 1 for a stock 
+						</p>
+					</div>
+				</div>
+			</div>
+			
 
 		</div>
 		
