@@ -2,6 +2,7 @@ import tkinter as tk
 from db_func.menu_func import get_net_worth, display_holdings, update_holding, delete_holding, make_holding
 from db_func.login import login, make_user
 # from gui.backend import
+import sys
 LARGE_FONT = ("Verdana", 12)
 
 class pymarketApp(tk.Tk):
@@ -23,7 +24,7 @@ class pymarketApp(tk.Tk):
 		self.frames = {
 
 		}
-		for F in (StartPage, Login, NewUser, Menu):
+		for F in (StartPage, Login, NewUser, Menu, Holdings, Create, Update, Remove):
 			frame = F(container, self)
 			self.frames[F] = frame
 
@@ -48,6 +49,9 @@ class StartPage(tk.Frame):
 		login_button.pack()
 		new_user_button = tk.Button(self, text="New User", command=lambda: controller.show_frame(NewUser))
 		new_user_button.pack()
+
+		quit_button = tk.Button(self, text="Logout/Quit", command=lambda: sys.exit())
+		quit_button.pack()
 
 class Login(tk.Frame):
 	def login_func(tb1, tb2, controller):
@@ -120,8 +124,57 @@ class Menu(tk.Frame):
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
+		check_button = tk.Button(self, text="Check holdings", command=lambda: controller.show_frame(Holdings))
+		check_button.pack()
+
+		create_button = tk.Button(self, text="Create holding", command=lambda: controller.show_frame(Create))
+		create_button.pack()
+
+		update_button = tk.Button(self, text="Update holding", command=lambda: controller.show_frame(Update))
+		update_button.pack()
+
+		remove_button = tk.Button(self, text="Remove holding", command=lambda: controller.show_frame(Remove))
+		remove_button.pack()
+
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
 		home_button.pack()
+
+class Holdings(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack()
+
+class Create(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack()
+
+class Update(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack()
+
+class Remove(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack()
+
 def run_app():
 	app = pymarketApp()
 	app.geometry('{}x{}'.format(500,500))
