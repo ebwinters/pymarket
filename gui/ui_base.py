@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 from db_func.menu_func import get_net_worth, display_holdings, update_holding, delete_holding, make_holding
 from db_func.login import login, make_user
 # from gui.backend import
@@ -42,9 +43,15 @@ class pymarketApp(tk.Tk):
 class StartPage(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
+
+		photo = tk.PhotoImage(file="/Users/Ethan/Desktop/pymarket/gui/pymarket.gif")
+		w1 = tk.Label(self, image=photo)
+		w1.image = photo
+		w1.pack()
+		
+
 		label = tk.Label(self, text="Welcome to pymarket", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
-
 		login_button = tk.Button(self, text="Login", command=lambda: controller.show_frame(Login))
 		login_button.pack()
 		new_user_button = tk.Button(self, text="New User", command=lambda: controller.show_frame(NewUser))
