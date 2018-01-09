@@ -1,6 +1,7 @@
 import tkinter as tk
 from db_func.menu_func import get_net_worth, display_holdings, update_holding, delete_holding, make_holding
 from db_func.login import login, make_user
+# from gui.backend import
 LARGE_FONT = ("Verdana", 12)
 
 class pymarketApp(tk.Tk):
@@ -22,7 +23,7 @@ class pymarketApp(tk.Tk):
 		self.frames = {
 
 		}
-		for F in (StartPage, Login, NewUser):
+		for F in (StartPage, Login, NewUser, Menu):
 			frame = F(container, self)
 			self.frames[F] = frame
 
@@ -48,19 +49,14 @@ class StartPage(tk.Frame):
 		new_user_button = tk.Button(self, text="New User", command=lambda: controller.show_frame(NewUser))
 		new_user_button.pack()
 
-def login_func(tb1, tb2):
-	username = tb1.get()
-	password = tb2.get()
-	print (username, password)
-	print(login(username, password))
-
-def make_user_func(tb1, tb2, tb3):
-	username = tb1.get()
-	password = tb2.get()
-	password2 = tb3.get()
-	make_user(username, password, password2)
 class Login(tk.Frame):
-	
+	def login_func(tb1, tb2, controller):
+		username = tb1.get()
+		password = tb2.get()
+		user_id = login(username, password)
+		if (user_id != -1):
+			controller.show_frame(Menu)
+
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
@@ -78,13 +74,19 @@ class Login(tk.Frame):
 		password = tk.Entry(self, show="*")
 		password.pack()
 
-		login_button = tk.Button(self, text="Login", command=lambda: login_func(username, password))
+		login_button = tk.Button(self, text="Login", command=lambda: Login.login_func(username, password, controller))
 		login_button.pack()
 
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
 		home_button.pack()
 
 class NewUser(tk.Frame):
+	def make_user_func(tb1, tb2, tb3, controller):
+		username = tb1.get()
+		password = tb2.get()
+		password2 = tb3.get()
+		make_user(username, password, password2)
+		controller.show_frame(StartPage)
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
@@ -105,13 +107,21 @@ class NewUser(tk.Frame):
 		password2 = tk.Entry(self, show="*")
 		password2.pack()
 
-		make_button = tk.Button(self, text="Make User", command=lambda: make_user_func(username, password, password2))
+		make_button = tk.Button(self, text="Make User", command=lambda: NewUser.make_user_func(username, password, password2, controller))
 		make_button.pack()
 
 
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
 		home_button.pack()
 
+class Menu(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
+		home_button.pack()
 def run_app():
 	app = pymarketApp()
 	app.geometry('{}x{}'.format(500,500))

@@ -1,7 +1,7 @@
 import sqlite3
 import getpass
 from hashlib import blake2b
-
+import sys
 
 
 """Return user id from function to only allow to to edit their data". If -1,
@@ -36,17 +36,18 @@ def make_user(username, password, password2):
 			break
 		else:
 			found = 1
-	while password != password2:
-		print ("Passwords didn't match, try again\n\n")
-		password = getpass.getpass("Enter a password: ")
-		password2 = getpass.getpass("Re-Enter password: ")
-	password = blake2b(digest_size=20)
-	password2 = password2.encode()
-	password.update(password2)
-	password = password.hexdigest()
-	insert_data = '''INSERT INTO user(username, password)
-					VALUES(?, ?)'''
-	cursor.execute(insert_data, [(username), (password)])
-	db.commit()
-	print ("user created")
+	if password == password2:
+		password = blake2b(digest_size=20)
+		password2 = password2.encode()
+		password.update(password2)
+		password = password.hexdigest()
+		insert_data = '''INSERT INTO user(username, password)
+						VALUES(?, ?)'''
+		cursor.execute(insert_data, [(username), (password)])
+		db.commit()
+			
+	else:
+		print ("Wrong combination")
+		sys.exit()
+
 
