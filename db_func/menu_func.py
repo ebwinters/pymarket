@@ -33,12 +33,7 @@ def display_holdings(user_id, db_name):
 	list_holdings = []
 	query = ("SELECT * FROM holdings where userID = ?")
 	cursor.execute(query, [(user_id),])
-	for holding in cursor.fetchall():
-		print ('holding id: ' + str(holding[0]))
-		print ('holding: ' + str(holding[2]))
-		print ('ammount: ' + str(holding[3]))
-		print ('bought @: $' + str(holding[4]) + '\n')
-	return list_holdings
+	return cursor.fetchall()
 
 """Update holdings with userid and holding to change as holdingID"""
 def update_holding(user_id, holding_to_change, hold_amt, bought_at, db_name):
@@ -69,4 +64,4 @@ def make_holding(user_id, abrv, hold, bought_at, crypt, db_name):
 				VALUES (?, ?, ?, ?, ?)''')
 	cursor.execute(query, [(user_id), (abrv), (hold), (bought_at), (crypt)])
 	db.commit()
-	print ("Holding created!")
+	

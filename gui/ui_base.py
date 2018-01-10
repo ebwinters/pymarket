@@ -6,7 +6,24 @@ from db_func.login import login, make_user
 import sys
 LARGE_FONT = ("Verdana", 12)
 
+loginid = 0
+current_holdings =[]
+def set_login_id(user_id):
+	global loginid
+	loginid = user_id
+
+def get_login_id():
+	return loginid
+
+def set_current_holdings(holdlist):
+	global current_holdings
+	current_holdings = holdlist
+
+def get_current_holdings():
+	return current_holdings
 class pymarketApp(tk.Tk):
+
+	
 	def __init__(self, *args, **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
 		#we will have a container to contain stuff within the app
@@ -25,7 +42,7 @@ class pymarketApp(tk.Tk):
 		self.frames = {
 
 		}
-		for F in (StartPage, Login, NewUser, Menu, Holdings, Create, Update, Remove):
+		for F in (StartPage, Login, NewUser, Menu, Holdings, Create, Update, Remove, Success):
 			frame = F(container, self)
 			self.frames[F] = frame
 
@@ -66,6 +83,7 @@ class Login(tk.Frame):
 		password = tb2.get()
 		user_id = login(username, password)
 		if (user_id != -1):
+			set_login_id(user_id)
 			controller.show_frame(Menu)
 
 
@@ -125,13 +143,19 @@ class NewUser(tk.Frame):
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(StartPage))
 		home_button.pack()
 
+
+def check_holdings(controller):
+	set_current_holdings(display_holdings(get_login_id(), "pymarket.db"))
+	Holdings.display_data()
+	controller.show_frame(Holdings)
+
 class Menu(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
-		check_button = tk.Button(self, text="Check holdings", command=lambda: controller.show_frame(Holdings))
+		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(controller))
 		check_button.pack()
 
 		create_button = tk.Button(self, text="Create holding", command=lambda: controller.show_frame(Create))
@@ -149,17 +173,74 @@ class Menu(tk.Frame):
 class Holdings(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
-		label.pack(pady=10, padx=10)
+		frame = tk.Frame(self)
+		frame.pack()
+		bottom_frame = tk.Frame(self)
+		bottom_frame.pack(side='bottom')
+		home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack(side='bottom')
+	def display_data():
+		#triggered by method call above this is where the shit happens
+		pass
+		# print (get_current_holdings())
+		# for holding in get_current_holdings():
+		# 	print(holding)
+		# 	holdingId = tk.Label(Holdings.frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
+		# 	holdingId.pack(side='left')
 
-		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
-		home_button.pack()
+		# 	abbreviation = tk.Label(frame, text=holding[2], font=LARGE_FONT, borderwidth=1)
+		# 	abbreviation.pack(side='left')
+
+		# 	hold = tk.Label(frame, text=holding[3], font=LARGE_FONT, borderwidth=1)
+		# 	hold.pack(side='left')
+
+		# 	bought_at = tk.Label(frame, text=holding[4], font=LARGE_FONT, borderwidth=1)
+		# 	bought_at.pack(side='left')
+
+		# 	label1 = tk.Label(frame, text="Here are your holdings", font=LARGE_FONT, borderwidth=1)
+		# 	label1.pack(side='left')
+	# display_data()
+
+			
+
+
+
+
+		
 
 class Create(tk.Frame):
+	def create_the_holding(user_id, tb1, tb2, tb3, tb4, db_name, controller):
+		abbreviation = tb1.get()
+		holdings = tb2.get()
+		bought_at = tb3.get()
+		cryptocurrency = tb4.get()
+		make_holding(user_id, abbreviation, holdings, bought_at, cryptocurrency, db_name)
+		controller.show_frame(Success)
+
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label = tk.Label(self, text="Enter abbreviation", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
+		abbreviation = tk.Entry(self)
+		abbreviation.pack()
+
+		label = tk.Label(self, text="Enter amount of shares", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		shares = tk.Entry(self)
+		shares.pack()
+
+		label = tk.Label(self, text="Enter bought at price", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		bought_at = tk.Entry(self)
+		bought_at.pack()
+
+		label = tk.Label(self, text="Enter 0 for cryptocurrency, 1 for stock", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		cryptocurrency = tk.Entry(self)
+		cryptocurrency.pack()
+
+		create_button = tk.Button(self, text="Create Holding", command=lambda: Create.create_the_holding(get_login_id(), abbreviation, shares, bought_at, cryptocurrency, "pymarket.db", controller))
+		create_button.pack()
 
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack()
@@ -177,6 +258,15 @@ class Remove(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+
+		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+		home_button.pack()
+
+class Success(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Success", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
