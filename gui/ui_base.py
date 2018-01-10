@@ -183,14 +183,12 @@ class Holdings(tk.Frame):
 		bottom_frame = tk.Frame(self)
 		bottom_frame.pack(side='bottom')
 		display_button = tk.Button(frame, text="Display", command=lambda: display_data(frame))
-		display_button.pack()
+		display_button.pack(side='top')
 		home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack(side='bottom')
 def display_data(frame):
-	b = tk.Button(frame, text="HEY THERE")
-	b.pack()
 	for holding in get_current_holdings():
-		print (holding)
+		
 		#EVERYTHING GOES IN HERE ------ EVERYTHING
 		# tk.Frame.__init__(self, parent)
 		# frame = tk.Frame(self)
@@ -202,24 +200,22 @@ def display_data(frame):
 
 		# for holding in get_current_holdings():
 		# 	print (holding)
-		# 	holdingId = tk.Label(frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
-		# 	holdingId.pack(side='left')
+		holdingId = tk.Label(frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
+		holdingId.pack(side='left')
 
-		# 	abbreviation = tk.Label(frame, text=holding[2], font=LARGE_FONT, borderwidth=1)
-		# 	abbreviation.pack(side='left')
+		abbreviation = tk.Label(frame, text=holding[2], font=LARGE_FONT, borderwidth=1)
+		abbreviation.pack(side='left')
 
-		# 	hold = tk.Label(frame, text=holding[3], font=LARGE_FONT, borderwidth=1)
-		# 	hold.pack(side='left')
+		hold = tk.Label(frame, text=holding[3], font=LARGE_FONT, borderwidth=1)
+		hold.pack(side='left')
 
-		# 	bought_at = tk.Label(frame, text=holding[4], font=LARGE_FONT, borderwidth=1)
-		# 	bought_at.pack(side='left')
+		bought_at = tk.Label(frame, text=holding[4], font=LARGE_FONT, borderwidth=1)
+		bought_at.pack(side='left')
 
-		# 	label1 = tk.Label(frame, text="Here are your holdings", font=LARGE_FONT, borderwidth=1)
-		# 	label1.pack(side='left')
+		
 
-		# home_button = tk.Button(bottom_frame, text="Back h", command=lambda: controller.show_frame(Menu))
-		# home_button.pack(side='bottom')
-		pass
+	
+		
 
 			
 
