@@ -42,7 +42,7 @@ class pymarketApp(tk.Tk):
 		self.frames = {
 
 		}
-		for F in (StartPage, Login, NewUser, Menu, Holdings, Create, Update, Remove, Success):
+		for F in (StartPage, Login, NewUser, Menu, Create, Update, Remove, Success, Holdings):
 			frame = F(container, self)
 			self.frames[F] = frame
 
@@ -55,6 +55,10 @@ class pymarketApp(tk.Tk):
 		frame = self.frames[container]
 		#raise to front
 		frame.tkraise()
+
+
+
+
 
 
 class StartPage(tk.Frame):
@@ -146,7 +150,7 @@ class NewUser(tk.Frame):
 
 def check_holdings(self, parent,controller):
 	set_current_holdings(display_holdings(get_login_id(), "pymarket.db"))
-	Holdings.display_data(self, parent,controller)
+	# Holdings.display_data()
 	controller.show_frame(Holdings)
 
 class Menu(tk.Frame):
@@ -155,7 +159,7 @@ class Menu(tk.Frame):
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
-		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(self, parent,controller))
+		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(self, parent, controller))
 		check_button.pack()
 
 		create_button = tk.Button(self, text="Create holding", command=lambda: controller.show_frame(Create))
@@ -172,28 +176,33 @@ class Menu(tk.Frame):
 
 class Holdings(tk.Frame):
 	def __init__(self, parent, controller):
-		Holdings.display_data(self,parent,controller)
-	# 	frame = tk.Frame(self)
-	# 	frame.pack()
-	# 	bottom_frame = tk.Frame(self)
-	# 	bottom_frame.pack(side='bottom')
-	# 	home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
-	# 	home_button.pack(side='bottom')
-	def display_data(self,parent,controller):
-		#EVERYTHING GOES IN HERE ------ EVERYTHING
+		# Holdings.display_data(self,parent,controller)
 		tk.Frame.__init__(self, parent)
 		frame = tk.Frame(self)
 		frame.pack()
 		bottom_frame = tk.Frame(self)
 		bottom_frame.pack(side='bottom')
+		display_button = tk.Button(frame, text="Display", command=lambda: display_data(frame))
+		display_button.pack()
 		home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack(side='bottom')
-		#triggered by method call above this is where the shit happens
+def display_data(frame):
+	b = tk.Button(frame, text="HEY THERE")
+	b.pack()
+	for holding in get_current_holdings():
+		print (holding)
+		#EVERYTHING GOES IN HERE ------ EVERYTHING
+		# tk.Frame.__init__(self, parent)
+		# frame = tk.Frame(self)
 		
-		# print (get_current_holdings())
-		for holding in get_current_holdings():
-			print(holding)
-		# 	holdingId = tk.Label(Holdings.frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
+		# frame.pack()
+		# frame.tkraise()
+		# bottom_frame = tk.Frame(self)
+		# bottom_frame.pack(side='bottom')
+
+		# for holding in get_current_holdings():
+		# 	print (holding)
+		# 	holdingId = tk.Label(frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
 		# 	holdingId.pack(side='left')
 
 		# 	abbreviation = tk.Label(frame, text=holding[2], font=LARGE_FONT, borderwidth=1)
@@ -207,7 +216,10 @@ class Holdings(tk.Frame):
 
 		# 	label1 = tk.Label(frame, text="Here are your holdings", font=LARGE_FONT, borderwidth=1)
 		# 	label1.pack(side='left')
-	# display_data()
+
+		# home_button = tk.Button(bottom_frame, text="Back h", command=lambda: controller.show_frame(Menu))
+		# home_button.pack(side='bottom')
+		pass
 
 			
 
