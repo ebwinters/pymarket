@@ -144,9 +144,9 @@ class NewUser(tk.Frame):
 		home_button.pack()
 
 
-def check_holdings(controller):
+def check_holdings(self, parent,controller):
 	set_current_holdings(display_holdings(get_login_id(), "pymarket.db"))
-	Holdings.display_data()
+	Holdings.display_data(self, parent,controller)
 	controller.show_frame(Holdings)
 
 class Menu(tk.Frame):
@@ -155,7 +155,7 @@ class Menu(tk.Frame):
 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
-		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(controller))
+		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(self, parent,controller))
 		check_button.pack()
 
 		create_button = tk.Button(self, text="Create holding", command=lambda: controller.show_frame(Create))
@@ -172,6 +172,15 @@ class Menu(tk.Frame):
 
 class Holdings(tk.Frame):
 	def __init__(self, parent, controller):
+		Holdings.display_data(self,parent,controller)
+	# 	frame = tk.Frame(self)
+	# 	frame.pack()
+	# 	bottom_frame = tk.Frame(self)
+	# 	bottom_frame.pack(side='bottom')
+	# 	home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
+	# 	home_button.pack(side='bottom')
+	def display_data(self,parent,controller):
+		#EVERYTHING GOES IN HERE ------ EVERYTHING
 		tk.Frame.__init__(self, parent)
 		frame = tk.Frame(self)
 		frame.pack()
@@ -179,12 +188,11 @@ class Holdings(tk.Frame):
 		bottom_frame.pack(side='bottom')
 		home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack(side='bottom')
-	def display_data():
 		#triggered by method call above this is where the shit happens
-		pass
+		
 		# print (get_current_holdings())
-		# for holding in get_current_holdings():
-		# 	print(holding)
+		for holding in get_current_holdings():
+			print(holding)
 		# 	holdingId = tk.Label(Holdings.frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
 		# 	holdingId.pack(side='left')
 
