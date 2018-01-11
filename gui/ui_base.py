@@ -156,7 +156,7 @@ def check_holdings(self, parent,controller):
 class Menu(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+		label = tk.Label(self, text="Select an option", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 
 		check_button = tk.Button(self, text="Check holdings", command=lambda: check_holdings(self, parent, controller))
@@ -188,7 +188,7 @@ class Holdings(tk.Frame):
 		home_button.pack(side='bottom')
 def display_data(frame):
 	for holding in get_current_holdings():
-		line = 'holdingId: ' + str(holding[0]) + ', abbreviation: ' + str(holding[2]) + ', shres/holdings: ' + str(holding[3]) + ', bought at: ' + str(holding[4]) 
+		line = 'holdingId: ' + str(holding[0]) + ', abbreviation: ' + str(holding[2]) + ', shares/holdings: ' + str(holding[3]) + ', bought at: ' + str(holding[4]) 
 		holdingId = tk.Label(frame, text=line, font=LARGE_FONT, borderwidth=1)
 		holdingId.pack(fill='x')
 
