@@ -24,7 +24,7 @@ def get_net_worth(user_id, db_name):
 	for i in range(len(money_spent)):
 		net += (current_price[i] - money_spent[i])
 
-	print ('net gain: $' + "%0.2f" % (net,))
+	return ('net gain: $' + "%0.2f" % (net,))
 
 """Print out a users holdings to the terminal"""
 def display_holdings(user_id, db_name):

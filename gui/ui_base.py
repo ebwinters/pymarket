@@ -188,31 +188,13 @@ class Holdings(tk.Frame):
 		home_button.pack(side='bottom')
 def display_data(frame):
 	for holding in get_current_holdings():
-		
-		#EVERYTHING GOES IN HERE ------ EVERYTHING
-		# tk.Frame.__init__(self, parent)
-		# frame = tk.Frame(self)
-		
-		# frame.pack()
-		# frame.tkraise()
-		# bottom_frame = tk.Frame(self)
-		# bottom_frame.pack(side='bottom')
+		line = 'holdingId: ' + str(holding[0]) + ', abbreviation: ' + str(holding[2]) + ', shres/holdings: ' + str(holding[3]) + ', bought at: ' + str(holding[4]) 
+		holdingId = tk.Label(frame, text=line, font=LARGE_FONT, borderwidth=1)
+		holdingId.pack(fill='x')
 
-		# for holding in get_current_holdings():
-		# 	print (holding)
-		holdingId = tk.Label(frame, text=holding[0], font=LARGE_FONT, borderwidth=1)
-		holdingId.pack(side='left')
-
-		abbreviation = tk.Label(frame, text=holding[2], font=LARGE_FONT, borderwidth=1)
-		abbreviation.pack(side='left')
-
-		hold = tk.Label(frame, text=holding[3], font=LARGE_FONT, borderwidth=1)
-		hold.pack(side='left')
-
-		bought_at = tk.Label(frame, text=holding[4], font=LARGE_FONT, borderwidth=1)
-		bought_at.pack(side='left')
-
-		
+	net_worth = get_net_worth(get_login_id(), "pymarket.db")
+	net_label = tk.Label(frame, text=net_worth, font=LARGE_FONT, borderwidth=1)
+	net_label.pack(fill='x')	
 
 	
 		
