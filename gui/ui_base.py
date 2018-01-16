@@ -21,6 +21,16 @@ def set_current_holdings(holdlist):
 
 def get_current_holdings():
 	return current_holdings
+
+def display_data(frame):
+	for holding in get_current_holdings():
+		line = 'holdingId: ' + str(holding[0]) + ', abbreviation: ' + str(holding[2]) + ', shares/holdings: ' + str(holding[3]) + ', bought at: ' + str(holding[4]) 
+		holdingId = tk.Label(frame, text=line, font=LARGE_FONT, borderwidth=1)
+		holdingId.pack(fill='x')
+
+	net_worth = get_net_worth(get_login_id(), "pymarket.db")
+	net_label = tk.Label(frame, text=net_worth, font=LARGE_FONT, borderwidth=1)
+	net_label.pack(fill='x')
 class pymarketApp(tk.Tk):
 
 	
@@ -42,7 +52,7 @@ class pymarketApp(tk.Tk):
 		self.frames = {
 
 		}
-		for F in (StartPage, Login, NewUser, Menu, Create, Update, Remove, Success, Holdings):
+		for F in (StartPage, Login, NewUser, Menu, Create, Remove, Success, Holdings):
 			frame = F(container, self)
 			self.frames[F] = frame
 
@@ -165,8 +175,8 @@ class Menu(tk.Frame):
 		create_button = tk.Button(self, text="Create holding", command=lambda: controller.show_frame(Create))
 		create_button.pack()
 
-		update_button = tk.Button(self, text="Update holding", command=lambda: controller.show_frame(Update))
-		update_button.pack()
+		# update_button = tk.Button(self, text="Update holding", command=lambda: controller.show_frame(Update))
+		# update_button.pack()
 
 		remove_button = tk.Button(self, text="Remove holding", command=lambda: controller.show_frame(Remove))
 		remove_button.pack()
@@ -186,15 +196,7 @@ class Holdings(tk.Frame):
 		display_button.pack(side='top')
 		home_button = tk.Button(bottom_frame, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack(side='bottom')
-def display_data(frame):
-	for holding in get_current_holdings():
-		line = 'holdingId: ' + str(holding[0]) + ', abbreviation: ' + str(holding[2]) + ', shares/holdings: ' + str(holding[3]) + ', bought at: ' + str(holding[4]) 
-		holdingId = tk.Label(frame, text=line, font=LARGE_FONT, borderwidth=1)
-		holdingId.pack(fill='x')
-
-	net_worth = get_net_worth(get_login_id(), "pymarket.db")
-	net_label = tk.Label(frame, text=net_worth, font=LARGE_FONT, borderwidth=1)
-	net_label.pack(fill='x')	
+	
 
 	
 		
@@ -243,23 +245,31 @@ class Create(tk.Frame):
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
 		home_button.pack()
 
-class Update(tk.Frame):
-	def __init__(self, parent, controller):
-		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
-		label.pack(pady=10, padx=10)
+# class Update(tk.Frame):
+# 	def __init__(self, parent, controller):
+# 		tk.Frame.__init__(self, parent)
+# 		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
+# 		label.pack(pady=10, padx=10)
 
-		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
-		home_button.pack()
+# 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
+# 		home_button.pack()
 
 class Remove(tk.Frame):
+	def delete_holding_func(holdingID, user_id, db_name, controller):
+		holdingID = holdingID.get()
+		delete_holding(user_id, holdingID, db_name)
+		controller.show_frame(Success)
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Please enter a username and password", font=LARGE_FONT)
-		label.pack(pady=10, padx=10)
+		label = tk.Label(self, text="Please enter the holdingID for the holding you wish to delete", font=LARGE_FONT)
+		label.pack()
+		holding = tk.Entry(self)
+		holding.pack()
+		delete_button = tk.Button(self, text="Delete Holding", command=lambda: Remove.delete_holding_func(holding, get_login_id(), "pymarket.db", controller))
+		delete_button.pack()
 
 		home_button = tk.Button(self, text="Back home", command=lambda: controller.show_frame(Menu))
-		home_button.pack()
+		home_button.pack(side='bottom')
 
 class Success(tk.Frame):
 	def __init__(self, parent, controller):
