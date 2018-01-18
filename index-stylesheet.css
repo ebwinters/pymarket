@@ -118,6 +118,28 @@ html {
 	text-align: center;
 	
 }
+
+div.galpad {
+    margin: 1px;
+    border: 1px solid #ccc;
+    /*float: left;*/
+/*    width: 180px;*/
+}
+
+div.galpad:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 10px;
+    text-align: center;
+}
+
 .not-necessary {
 	font-size: 3px;
 	position: absolute;
