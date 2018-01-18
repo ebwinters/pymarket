@@ -49,7 +49,7 @@ html {
 
 .aapis:hover {
 	text-decoration: none;
-	color: black;
+	color: white;
 
 }
 .aapis {
@@ -124,7 +124,7 @@ thead {
 	font-family: myFirstFont;
 	background-color: #27310e;
 	text-align: center;
-	/*color: white;*/
+	color: white;
 
 }
 .dbe {
