@@ -136,6 +136,10 @@ thead {
 	color: white;
 	
 }
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+  background-color: #60b0f4;
+  color:white;
+}
 
 div.galpad {
     margin: 1px;
