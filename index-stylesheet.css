@@ -135,9 +135,10 @@ div.gallery img {
     height: auto;
 }
 
-div.desc {
+div.descrip {
     padding: 10px;
     text-align: center;
+    background-color: #60b0f4;
 }
 
 .not-necessary {
