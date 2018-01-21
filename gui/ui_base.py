@@ -6,8 +6,11 @@ from db_func.login import login, make_user
 import sys
 LARGE_FONT = ("Verdana", 12)
 
+'''global variables'''
 loginid = 0
 current_holdings =[]
+
+'''global methods'''
 def set_login_id(user_id):
 	global loginid
 	loginid = user_id
@@ -31,9 +34,8 @@ def display_data(frame):
 	net_worth = get_net_worth(get_login_id(), "pymarket.db")
 	net_label = tk.Label(frame, text=net_worth, font=LARGE_FONT, borderwidth=1)
 	net_label.pack(fill='x')
-class pymarketApp(tk.Tk):
 
-	
+class pymarketApp(tk.Tk):
 	def __init__(self, *args, **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
 		#we will have a container to contain stuff within the app
@@ -71,6 +73,7 @@ class pymarketApp(tk.Tk):
 
 
 
+#display login and new user options
 class StartPage(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
@@ -158,6 +161,9 @@ class NewUser(tk.Frame):
 		home_button.pack()
 
 
+'''confusing how I did this... current holdings were loading on Hodings page when app started
+	causing the holdings to be empty, since no user was logged in. So I call this method when a button 
+	is clicked to fetch the current holdings and display them on another frame'''
 def check_holdings(self, parent,controller):
 	set_current_holdings(display_holdings(get_login_id(), "pymarket.db"))
 	# Holdings.display_data()
@@ -209,6 +215,7 @@ class Holdings(tk.Frame):
 		
 
 class Create(tk.Frame):
+	'''feed in user id, all text boxes, db name, controller, to feed the createholding function'''
 	def create_the_holding(user_id, tb1, tb2, tb3, tb4, db_name, controller):
 		abbreviation = tb1.get()
 		holdings = tb2.get()
