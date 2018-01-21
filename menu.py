@@ -3,6 +3,7 @@ from db_func.menu_func import display_holdings, get_net_worth, update_holding, d
 from db_func.backend_func import get_current_price
 import sys
 
+#irrelevant function as of now
 def show_menu(user_id):
 	print ('#'*80)
 	print ('Please select which action you would like to take')
