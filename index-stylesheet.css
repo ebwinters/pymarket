@@ -125,6 +125,9 @@ thead {
 	background-color: #27310e;
 	text-align: center;
 	color: white;
+	border-bottom: solid;
+	border-width: 1px;
+	border-bottom-color: white;
 
 }
 .dbe {
